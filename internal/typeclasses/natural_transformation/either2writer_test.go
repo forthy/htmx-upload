@@ -38,8 +38,8 @@ func TestEither2Writer(t *testing.T) {
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			result := E2W[[]string, int](func() []string {
-				return A.Of("Left case")
+			result := E2W[[]string, int](func(err error) []string {
+				return A.Of(fmt.Sprintf("Error:[%v]", err))
 			})(test.input)
 
 			// DEBUG
